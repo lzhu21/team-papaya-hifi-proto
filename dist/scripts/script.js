@@ -105,10 +105,11 @@ if(document.getElementById("designName") != null) {
 
   document.getElementById("bgcolor").value = colorSelected;
   document.getElementById("background").style.backgroundColor = colorSelected != null ? colorSelected : "ffffff";
+  document.getElementById("design").style.backgroundColor = colorSelected != null ? colorSelected : "ffffff";
   $(".left1").css("background-color", colorSelected);
   $(".left2").css("background-color", colorSelected);
   $(".left3").css("background-color", colorSelected);
-
+  $(".squareShape").css("background-color", colorSelected);
 
   console.log("Retrieved texture: " + textureNum);
   var textureSelected = sessionStorage.getItem("textureChosen") != null ? sessionStorage.getItem("textureChosen") : 0;
