@@ -82,7 +82,7 @@ function save() {
 
   // save color
   var colorChosen = document.getElementById("bgcolor");
-  sessionStorage.setItem("colorChosen", colorChosen.value);
+  sessionStorage.setItem("colorChosen", "#" + colorChosen.value);
 
   // save texture
   sessionStorage.setItem("textureChosen", textureNum);
@@ -99,15 +99,17 @@ if(document.getElementById("designName") != null) {
   document.getElementById('design').src = neckDesigns[total];
   console.log("Retrieved Design: " + total);
 
-  var colorSelected = sessionStorage.getItem("colorChosen") != null ? "#" + sessionStorage.getItem("colorChosen") : "#ffffff";
+  var colorSelected = sessionStorage.getItem("colorChosen") != null ? sessionStorage.getItem("colorChosen") : "#ffffff";
 
   console.log("Retrieved Color: " + colorSelected);
 
   document.getElementById("bgcolor").value = colorSelected;
-  document.getElementById("background").style.backgroundColor = colorSelected != null ? colorSelected : "ffffff";
+  document.getElementById("background").style.backgroundColor = colorSelected;
+  $("#design").css("background-color", colorSelected);
   $(".left1").css("background-color", colorSelected);
   $(".left2").css("background-color", colorSelected);
   $(".left3").css("background-color", colorSelected);
+  $(".squareShape").css("background-color", colorSelected);
 
 
   console.log("Retrieved texture: " + textureNum);
@@ -118,7 +120,10 @@ if(document.getElementById("designName") != null) {
   $(".squareShape").css("background-image", textureDesigns[textureSelected]);
 }
 
-
+function clearBGColor() {
+  sessionStorage.setItem("colorChosen", "none");
+  sessionStorage.setItem("textureChosen", 0);
+}
 
 
 // SHARE FUNCTION
