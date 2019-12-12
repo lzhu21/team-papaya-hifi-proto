@@ -86,6 +86,8 @@ function save() {
 
   // save texture
   sessionStorage.setItem("textureChosen", textureNum);
+
+  alert("Design Saved!");
 }
 
 // called every session to retrieve saved design
