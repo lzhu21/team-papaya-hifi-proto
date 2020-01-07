@@ -32,22 +32,11 @@ function changeTexture(text) {
   $(".squareShape").css("background-image", textureDesigns[textureNum]);
 }
 
-var front = true;
-
-function flipDesign() {
-  front = !front;
-  if (front) {
-    document.getElementById('design').src = "https://cdn.discordapp.com/attachments/508801763349102596/651927108020469762/testing.png";
-  } else {
-    document.getElementById('design').src = "https://cdn.discordapp.com/attachments/508801763349102596/652297367831183378/back.png";
-  }
-}
-
 var neckNum = sessionStorage.getItem("neckNum") != null ? Number(sessionStorage.getItem("neckNum")) : 0;
 var sleeveNum = sessionStorage.getItem("sleeveNum") != null ? Number(sessionStorage.getItem("sleeveNum")) : 0;
 var waistNum = sessionStorage.getItem("waistNum") != null ? Number(sessionStorage.getItem("waistNum")) : 0;
 
-var neckDesigns = ["https://cdn.discordapp.com/attachments/508801763349102596/651927108020469762/testing.png", 'https://cdn.discordapp.com/attachments/508801763349102596/652652298329391116/80068680_566696617444033_254215940269408256_n.png', 'longsleeve', 'vneckandlongsleeve', 'crop top', ]
+var neckDesigns = ["./images/original.png", './images/vneck.png', './images/longsleeves.png', './images/longsleevesvneck.png', './images/croptop.png', './images/croptopvneck.png', './images/croptoplongsleeves.png', './images/croptoplongsleevesvneck.png']
 
 function changeShape(shape) {
   if (shape == 'neck') {
@@ -64,6 +53,20 @@ function changeShape(shape) {
   var total = neckNum + sleeveNum + waistNum;
   document.getElementById('design').src = neckDesigns[total];
   console.log('design changed to ' + total);
+}
+
+var front = true;
+
+var flipImage = ["./images/back.png", './images/backlongsleeves.png', './images/backcroptop.png', './images/backlongsleevescroptop.png']
+
+function flipDesign() {
+  front = !front;
+  var total = neckNum + sleeveNum + waistNum;
+  if (front) {
+    document.getElementById('design').src = neckDesigns[total];
+  } else {
+    document.getElementById('design').src = flipImage[total - Math.round(total / 2)];
+  }
 }
 
 function save() {
